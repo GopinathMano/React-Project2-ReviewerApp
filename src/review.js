@@ -3,6 +3,7 @@ import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
 
 const Review = () => {
+  // checking num so that it cannot exced data or less than data
   const checkNum = (num) => {
     if (num > people.length - 1) {
       return 0;
@@ -12,22 +13,27 @@ const Review = () => {
     }
     return num;
   };
+  // prev function
   const prev = () => {
     setIndex((index) => {
       let newIndex = index - 1;
       return checkNum(newIndex);
     });
   };
+  // next btn function
   const next = () => {
     setIndex((index) => {
       let newIndex = index + 1;
       return checkNum(newIndex);
     });
   };
-
+  // random button function
   const Random = () => {
     setIndex(() => {
       let newNum = Math.floor(Math.random() * people.length);
+      if (newNum === index) {
+        return checkNum(newNum + 1);
+      }
       return checkNum(newNum);
     });
   };
